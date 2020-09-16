@@ -9,7 +9,7 @@ public class Address {
 	private String houseNumber;
 	@Column(nullable = true)
 	private String additional;
-	private String area;
+	private String city;
 	private String zip;
 	private String country;
 
@@ -37,12 +37,12 @@ public class Address {
 		this.additional = additional;
 	}
 
-	public String getArea() {
-		return area;
+	public String getCity() {
+		return city;
 	}
 
-	public void setArea(String area) {
-		this.area = area;
+	public void setCity(String area) {
+		this.city = area;
 	}
 
 	public String getZip() {

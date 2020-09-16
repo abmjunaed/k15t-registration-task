@@ -34,22 +34,24 @@ public class UserData implements Serializable {
 
 	private String matchingPassword;
 
-	/*
-	 * @NotEmpty(message = "{registration.validation.street}") private String
-	 * street;
-	 * 
-	 * @NotEmpty(message = "{registration.validation.houseNumber}") private String
-	 * houseNumber;
-	 * 
-	 * private String additional;
-	 * 
-	 * @NotEmpty(message = "{registration.validation.area}") private String area;
-	 * 
-	 * @NotEmpty(message = "{registration.validation.zip}") private String zip;
-	 * 
-	 * @NotEmpty(message = "{registration.validation.country}") private String
-	 * country; private String phoneNumber;
-	 */
+	@NotEmpty(message = "{registration.validation.street}")
+	private String street;
+
+	@NotEmpty(message = "{registration.validation.houseNumber}")
+	private String houseNumber;
+
+	private String additional;
+
+	@NotEmpty(message = "{registration.validation.city}")
+	private String city;
+
+	@NotEmpty(message = "{registration.validation.zip}")
+	private String zip;
+
+	@NotEmpty(message = "{registration.validation.country}")
+	private String country;
+	private String phoneNumber;
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -89,36 +91,61 @@ public class UserData implements Serializable {
 	public void setMatchingPassword(String matchingPassword) {
 		this.matchingPassword = matchingPassword;
 	}
-	/*
-	 * public String getStreet() { return street; }
-	 * 
-	 * public void setStreet(String street) { this.street = street; }
-	 * 
-	 * public String getHouseNumber() { return houseNumber; }
-	 * 
-	 * public void setHouseNumber(String houseNumber) { this.houseNumber =
-	 * houseNumber; }
-	 * 
-	 * public String getAdditional() { return additional; }
-	 * 
-	 * public void setAdditional(String additional) { this.additional = additional;
-	 * }
-	 * 
-	 * public String getArea() { return area; }
-	 * 
-	 * public void setArea(String area) { this.area = area; }
-	 * 
-	 * public String getZip() { return zip; }
-	 * 
-	 * public void setZip(String zip) { this.zip = zip; }
-	 * 
-	 * public String getCountry() { return country; }
-	 * 
-	 * public void setCountry(String country) { this.country = country; }
-	 * 
-	 * public String getPhoneNumber() { return phoneNumber; }
-	 * 
-	 * public void setPhoneNumber(String phoneNumber) { this.phoneNumber =
-	 * phoneNumber; }
-	 */
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getHouseNumber() {
+		return houseNumber;
+	}
+
+	public void setHouseNumber(String houseNumber) {
+		this.houseNumber = houseNumber;
+	}
+
+	public String getAdditional() {
+		return additional;
+	}
+
+	public void setAdditional(String additional) {
+		this.additional = additional;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String area) {
+		this.city = area;
+	}
+
+	public String getZip() {
+		return zip;
+	}
+
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
 }

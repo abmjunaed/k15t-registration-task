@@ -1,6 +1,7 @@
 package com.k15t.pat.server.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,11 +22,11 @@ public class User {
 	private String email;
 	private String password;
 
-	/*
-	 * @Embedded private Address address;
-	 * 
-	 * @Column(nullable = true) private String phoneNumber;
-	 */
+	@Embedded
+	private Address address;
+
+	@Column(nullable = true)
+	private String phoneNumber;
 
 	public Long getId() {
 		return id;
@@ -66,14 +67,21 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	/*
-	 * public Address getAddress() { return address; }
-	 * 
-	 * public void setAddress(Address address) { this.address = address; }
-	 * 
-	 * public String getPhoneNumber() { return phoneNumber; }
-	 * 
-	 * public void setPhoneNumber(String phoneNumber) { this.phoneNumber =
-	 * phoneNumber; }
-	 */
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
 }

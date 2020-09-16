@@ -20,29 +20,28 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 	@Autowired
 	private MessageSource messages;
 
-	// 400
 	@Override
 	protected ResponseEntity<Object> handleBindException(final BindException ex, final HttpHeaders headers,
 			final HttpStatus status, final WebRequest request) {
-		logger.error("400 Status Code", ex);
+		logger.error("400 Status Code: " + ex);
 		final BindingResult result = ex.getBindingResult();
 		final GenericResponse bodyOfResponse = new GenericResponse(result.getAllErrors(),
 				"Invalid" + result.getObjectName());
 		return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
 
-	// 409
 	@ExceptionHandler({ EmailAlreadyExistsException.class })
-	public ResponseEntity<Object> handleUserAlreadyExist(final RuntimeException ex, final WebRequest request) {
-		logger.error("409 Status Code", ex);
+	public ResponseEntity<Object> handleEmailAlreadyExist(final EmailAlreadyExistsException ex,
+			final WebRequest request) {
+		logger.error("409 Status Code: " + ex);
 		final GenericResponse bodyOfResponse = new GenericResponse(
-				messages.getMessage("message.regError", null, request.getLocale()), "Email already exists");
+				messages.getMessage("registration.email.exists", null, request.getLocale()), "EmailAlreadyExist");
 		return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.CONFLICT, request);
 	}
 
 	@ExceptionHandler({ Exception.class })
 	public ResponseEntity<Object> handleInternal(final RuntimeException ex, final WebRequest request) {
-		logger.error("500 Status Code", ex);
+		logger.error("500 Status Code: " + ex);
 		final GenericResponse bodyOfResponse = new GenericResponse(
 				messages.getMessage("message.error", null, request.getLocale()), "InternalError");
 		return new ResponseEntity<>(bodyOfResponse, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
