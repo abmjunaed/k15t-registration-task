@@ -1,12 +1,59 @@
-# Full-Stack Developer Sample Project
+# Registration API and client (JavaScript)
+
+## Summary:
+* Input validation in Java side 
+** If the provided email already exists
+** Name should not be number
+** Password match
+** Mandatory fields are not null or empty etc.
+* Input validation is also done on client side using HTML's required Attribute
+* Data is saved into in memory DB, on every start up of the app the DB is newly created, which is not good for production, but used only for demo purpose
 
 
-## What is it about?
-Here we have a small web application allowing to register for the next Java Meetup.
-Unfortunately the most important part of the app is still missing. The form 
-fields as well as the backend to store the data in memory. But you are here to 
-help us out and get it done.
+## API documentation 
+I used Swagger to document the API. 
+It can be seen from here:
+ http://localhost:8080/swagger-ui/#/registration-api-controller/addUserUsingPOST
+
+ ### Request body
+ - Click on the POST button from above link
+ - Now look at the Request body section. Here you can see all the fields, the required fields as well.
+ - At the right side of "Request body", you can see that the method accepts "application/x-www-form-urlencoded"
+
+ ### Response 
+ Responses section shows the response code and their messages 
+ - 400 Bad request sends the errors of all fields. So thee the message format, please click on the "Schema".
+ There I have written the detail of the message format
  
+ ## How to run
+ 
+ * Run following commands
+ 
+ ```
+	mvn compile
+	mvn package
+	>java -jar target\k15t-full-stack-dev-tasks-0.1.0.jar
+ ```
+ * Goto http://localhost:8080/registration
+ * Fill the forms and press submit button
+ * If there is any error, it will be shown beside the fields of the form
+ * If the registration is successful, you will see an alert with success message 
+
+## Code structure
+ * *com.k15t.pat.client.controller* contains the MVC controller for serving the registration page  
+ * *com.k15t.pat.server.api.RegistrationApiController* contains the Rest API
+ * All the packages and class names are self explanatory
+ 
+## Some decisions  
+* Instead of using JAX-RS, I am using Spring for REST endpoint. 
+The reason is, since I am using Spring Eco system, it is better not to mix Spring Rest and JAX-RS
+in the same project, if I have the choice. Since the code was very easy to migrate, I did so.
+* Original templating was done using velocity. Since Thymeleaf is more popular and I already knew it,
+it was less time consuming for me to switch to thymeleaf instead of looking up the syntax of velocity
+* I used swagger for easy documenting of the API. For large API I would also generate the initial code using Swagger
+* I changed the original registraion link from http://localhost:8080/registration.html to http://localhost:8080/registration, 
+i.e. I removed the .html part. User doesn't need to know if it is .html or.php...
+
 ## But *what* should I do exactly?
 Extend the form with the required fields (see registration.vm for further details) and 
 store the entered information by using a REST endpoint. Giv the user feedback if the
