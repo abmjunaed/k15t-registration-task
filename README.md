@@ -56,6 +56,7 @@ it was less time consuming for me to switch to thymeleaf instead of looking up t
 * I used swagger for easy documenting of the API. For large API I would also consider generating the initial code using Swagger
 * I changed the original registraion link from http://localhost:8080/registration.html to http://localhost:8080/registration, 
 i.e. I removed the .html part. User doesn't need to know if it is .html or.php or anything else.
+* Updated Spring boot to the latest version
 
 ## Future improvements
 - For production we should not recreate the DB on each startup
