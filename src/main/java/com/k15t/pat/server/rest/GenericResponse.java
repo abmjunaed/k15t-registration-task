@@ -6,8 +6,18 @@ import java.util.stream.Collectors;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class GenericResponse {
+	@ApiModelProperty(notes = "If the request is successful, it containe \"message\": \"success\"."
+			+ " If there is error, it looks like this e.g. \"message\": \"Account already exists with this email\"."
+			+ "  If there is field error, it contains the erorr message in JSON format. "
+			+ "The format looks like this: \"message\": \"[{\"field\":\"fieldName\",\"defaultMessage\":\"the error message\"},"
+			+ "{\"field\":\"fieldName\",\"defaultMessage\":\"the error message\"}]\"")
     private String message;
+
+	@ApiModelProperty(notes = "If there is no error, the format is \"error\": null. "
+			+ "Otherwise, Key-value to indicate the error happened e.g. -> \"error\": \"InvalidUser\"")
     private String error;
 
     public GenericResponse(final String message) {
