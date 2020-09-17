@@ -1,8 +1,10 @@
 # Registration API and client (JavaScript)
 
 ## Summary:
+* Registration form can be reached via http://localhost:8080/registration
+* There is an endpoint for POST http://localhost:8080/api/v1/registration
 * Input validation in Java side 
-  *If the provided email already exists
+  * If the provided email already exists
   * Name should not be number
   * Password match
   * Mandatory fields are not null or empty etc.
