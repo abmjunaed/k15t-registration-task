@@ -46,44 +46,4 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 				messages.getMessage("message.error", null, request.getLocale()), "InternalError");
 		return new ResponseEntity<>(bodyOfResponse, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-	// error handle for @Valid
-//	@Override
-//	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-//			HttpHeaders headers, HttpStatus status, WebRequest request) {
-//
-//		Map<String, Object> body = new LinkedHashMap<>();
-//		body.put("timestamp", new Date());
-//		body.put("status", status.value());
-//
-//		// Get all errors
-//		Map<String, String> errors = ex.getBindingResult().getFieldErrors().stream()
-//				.collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
-//		errors.putAll(ex.getBindingResult().getGlobalErrors().stream()
-//				.collect(Collectors.toMap(ObjectError::getObjectName, ObjectError::getDefaultMessage)));
-//		body.put("errors", errors);
-//
-//		return new ResponseEntity<>(errors, status);
-//
-//	}
-//
-//	@ExceptionHandler
-//	@ResponseBody
-//	public ResponseEntity<Object> handleException(Exception e) {
-//		if (e instanceof EmailAlreadyExistsException) {
-//			EmailAlreadyExistsException emailEx = (EmailAlreadyExistsException) e;
-//			Map<String, Object> body = new LinkedHashMap<>();
-//			body.put("status", HttpStatus.BAD_REQUEST.value());
-//			Map<String, String> errors = new HashMap<>();
-//			errors.put("email", emailEx.getMessage());
-//			body.put("errors", errors);
-//
-//			return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-//		}
-//		Map<String, Object> body = new LinkedHashMap<>();
-//		Map<String, String> errors = new HashMap<>();
-//		errors.put("Unexpected Exception", e.getMessage());
-//		body.put("errors", errors);
-//
-//		return new ResponseEntity<>(errors, HttpStatus.INTERNAL_SERVER_ERROR);
-//	}
 }

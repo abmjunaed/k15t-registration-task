@@ -3,6 +3,7 @@ package com.k15t.pat.common.data;
 import java.io.Serializable;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.k15t.pat.server.validator.ValidEmail;
@@ -16,38 +17,49 @@ public class UserData implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@NotNull(message = "{registration.validation.firstName}")
 	@NotEmpty(message = "{registration.validation.firstName}")
 	@ValidName(message = "{registration.validation.name.should.not.be.number}")
 	private String firstName;
 
+	@NotNull(message = "{registration.validation.lastName}")
 	@NotEmpty(message = "{registration.validation.lastName}")
 	@ValidName(message = "{registration.validation.name.should.not.be.number}")
 	private String lastName;
 
+	@NotNull(message = "{registration.validation.email}")
 	@NotEmpty(message = "{registration.validation.email}")
 	@ValidEmail(message = "{registration.validation.email}")
 	private String email;
 
+	@NotNull(message = "{registration.validation.password}")
 	@NotEmpty(message = "{registration.validation.password}")
 	@Size(min = 8, max = 16)
 	private String password;
 
+	@NotNull(message = "{registration.validation.password}")
+	@NotEmpty(message = "{registration.validation.password}")
 	private String matchingPassword;
 
+	@NotNull(message = "{registration.validation.street}")
 	@NotEmpty(message = "{registration.validation.street}")
 	private String street;
 
+	@NotNull(message = "{registration.validation.houseNumber}")
 	@NotEmpty(message = "{registration.validation.houseNumber}")
 	private String houseNumber;
 
 	private String additional;
 
+	@NotNull(message = "{registration.validation.city}")
 	@NotEmpty(message = "{registration.validation.city}")
 	private String city;
 
+	@NotNull(message = "{registration.validation.zip}")
 	@NotEmpty(message = "{registration.validation.zip}")
 	private String zip;
 
+	@NotNull(message = "{registration.validation.country}")
 	@NotEmpty(message = "{registration.validation.country}")
 	private String country;
 	private String phoneNumber;
