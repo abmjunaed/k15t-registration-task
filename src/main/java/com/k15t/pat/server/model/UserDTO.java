@@ -1,4 +1,4 @@
-package com.k15t.pat.common.data;
+package com.k15t.pat.server.model;
 
 import java.io.Serializable;
 
@@ -13,7 +13,7 @@ import com.k15t.pat.server.validator.ValidPassword;
 
 
 @ValidPassword(message = "{registration.validation.password.mismatch}")
-public class UserData implements Serializable {
+public class UserDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

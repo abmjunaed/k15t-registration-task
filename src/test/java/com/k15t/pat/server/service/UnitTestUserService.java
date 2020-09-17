@@ -15,9 +15,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.k15t.pat.common.data.UserData;
 import com.k15t.pat.server.entity.User;
 import com.k15t.pat.server.exception.EmailAlreadyExistsException;
+import com.k15t.pat.server.model.UserDTO;
 import com.k15t.pat.server.repository.UserRepository;
 
 @ExtendWith(MockitoExtension.class)
@@ -31,7 +31,7 @@ public class UnitTestUserService {
 
 	@Test
 	void register() throws EmailAlreadyExistsException {
-		UserData userData = getCorrectUserData();
+		UserDTO userData = getCorrectUserData();
 		when(userRepository.save(isA(User.class))).then(returnsFirstArg());
 		User registeredUser = userService.register(userData);
 		assertTrue(registeredUser.getEmail().equals(userData.getEmail()));
@@ -39,14 +39,14 @@ public class UnitTestUserService {
 
 	@Test
 	void duplicateEmailTest() throws EmailAlreadyExistsException {
-		UserData userData = getCorrectUserData();
+		UserDTO userData = getCorrectUserData();
 		when(userRepository.findByEmail(userData.getEmail())).thenReturn(new User());
 		assertThrows(EmailAlreadyExistsException.class, () -> userService.register(userData));
 		verify(userRepository, never()).save(isA(User.class));
 	}
 
-	private UserData getCorrectUserData() {
-		UserData userData = new UserData();
+	private UserDTO getCorrectUserData() {
+		UserDTO userData = new UserDTO();
 		userData.setFirstName("First name");
 		userData.setLastName("Last name");
 		userData.setPassword("Password");

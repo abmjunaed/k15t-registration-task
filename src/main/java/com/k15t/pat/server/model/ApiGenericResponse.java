@@ -1,4 +1,4 @@
-package com.k15t.pat.server.rest;
+package com.k15t.pat.server.model;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,11 +8,12 @@ import org.springframework.validation.ObjectError;
 
 import io.swagger.annotations.ApiModelProperty;
 
-public class GenericResponse {
-	@ApiModelProperty(notes = "If the request is successful, it containe \"message\": \"success\"."
+public class ApiGenericResponse {
+	@ApiModelProperty(notes = "If the request is successful, it contains \"message\": \"success\"."
 			+ " If there is error, it looks like this e.g. \"message\": \"Account already exists with this email\"."
 			+ "  If there is field error, it contains the erorr message in JSON format. "
-			+ "The format looks like this: \"message\": \"[{\"field\":\"fieldName\",\"defaultMessage\":\"the error message\"},"
+			+ "The format looks like this: "
+			+ "\"message\": \"[{\"field\":\"fieldName\",\"defaultMessage\":\"the error message\"},"
 			+ "{\"field\":\"fieldName\",\"defaultMessage\":\"the error message\"}]\"")
     private String message;
 
@@ -20,18 +21,18 @@ public class GenericResponse {
 			+ "Otherwise, Key-value to indicate the error happened e.g. -> \"error\": \"InvalidUser\"")
     private String error;
 
-    public GenericResponse(final String message) {
+    public ApiGenericResponse(final String message) {
         super();
         this.message = message;
     }
 
-    public GenericResponse(final String message, final String error) {
+    public ApiGenericResponse(final String message, final String error) {
         super();
         this.message = message;
         this.error = error;
     }
 
-    public GenericResponse(List<ObjectError> allErrors, String error) {
+    public ApiGenericResponse(List<ObjectError> allErrors, String error) {
         this.error = error;
         String temp = allErrors.stream().map(e -> {
             if (e instanceof FieldError) {

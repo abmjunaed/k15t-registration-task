@@ -1,4 +1,4 @@
-package com.k15t.pat.server.rest;
+package com.k15t.pat.server.api;
 
 import javax.validation.Valid;
 
@@ -12,34 +12,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.k15t.pat.common.data.UserData;
 import com.k15t.pat.server.exception.EmailAlreadyExistsException;
+import com.k15t.pat.server.model.ApiGenericResponse;
+import com.k15t.pat.server.model.UserDTO;
 import com.k15t.pat.server.service.UserService;
 
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/api/v1/registration")
-public class RegistrationRestController {
+public class RegistrationApiController {
 	private final Logger log = LoggerFactory.getLogger(getClass());
+
 	@Autowired
 	private UserService service;
 
-	@PostMapping(consumes = { MediaType.APPLICATION_FORM_URLENCODED_VALUE })
+	@PostMapping(consumes = { MediaType.APPLICATION_FORM_URLENCODED_VALUE }, produces = { "application/json" })
 	@ResponseStatus(HttpStatus.CREATED)
-	@ApiOperation(value="Register an user", response = GenericResponse.class)
+	// swagger documentation
+	@ApiOperation(value = "Register an user", response = ApiGenericResponse.class)
 	@ApiResponses(value = { @ApiResponse(code = 201, message = "success"),
-			@ApiResponse(code = 400, message = "Bad request"), @ApiResponse(code = 409, message = "EmailAlreadyExist"),
+			@ApiResponse(code = 400, message = "Bad request", response = ApiGenericResponse.class),
+			@ApiResponse(code = 409, message = "EmailAlreadyExist"),
 			@ApiResponse(code = 500, message = "InternalError") })
-	public GenericResponse postRegistration(
-			@ApiParam(value = "application/x-www-form-urlencoded") @Valid UserData userData)
-			throws EmailAlreadyExistsException {
+	public ApiGenericResponse addUser(@Valid UserDTO userData) throws EmailAlreadyExistsException {
 		log.debug("Registering user account with information: {}", userData);
 		service.register(userData);
-		log.debug("success");
-		return new GenericResponse("success");
+		return new ApiGenericResponse("success");
 	}
 }
