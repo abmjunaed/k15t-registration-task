@@ -9,7 +9,7 @@
   * Password match
   * Mandatory fields are not null or empty etc.
 * Input validation is also done on client side using HTML's required Attribute
-* JavaScript Client
+* JavaScript Client inside src/main/resources/registration.html
 * Api Documentation using Swagger
 * Data is saved into in memory DB, on every start up of the app the DB is newly created, which is not good for production, but used only for demo purpose
 
