@@ -9,6 +9,8 @@
   * Password match
   * Mandatory fields are not null or empty etc.
 * Input validation is also done on client side using HTML's required Attribute
+* JavaScript Client
+* Api Documentation using Swagger
 * Data is saved into in memory DB, on every start up of the app the DB is newly created, which is not good for production, but used only for demo purpose
 
 
@@ -61,5 +63,6 @@ i.e. I removed the .html part. User doesn't need to know if it is .html or.php o
 ## Future improvements
 - For production we should not recreate the DB on each startup
 - Add password strength check on the JavaScript side 
+- Send email to the user
 
-If you have any question or feedback, I will be happy to hear it.
+If you have any questions or feedback, I will be happy to hear it.
